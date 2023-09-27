@@ -1,6 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/movies/')
+      .then(response => {
+        setMovies(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  
   const [formData, setFormData] = useState("");
 
   const formD = new FormData()
@@ -20,6 +33,15 @@ function App() {
   
 
   return (
+    <>
+    <div>
+      <h1>Movie Titles</h1>
+      <ul>
+        {movies.map((title, index) => (
+          <li key={index}>{title}</li>
+        ))}
+      </ul>
+    </div>
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -31,6 +53,7 @@ function App() {
       {/* Add more form fields here */}
       <button type="submit">Submit</button>
     </form>
+    </>
   );
 }
 

@@ -20,4 +20,5 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.ml, name='ml'),
+    path('movies/', views.load_movies, name="load_movies")
 ]
