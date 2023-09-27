@@ -2,7 +2,6 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 function App() {
   const [movies, setMovies] = useState([]);
-
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/movies/')
       .then(response => {
@@ -17,7 +16,6 @@ function App() {
 
   
   const [formData, setFormData] = useState("");
-
   const formD = new FormData()
   formD.append('data',formData)
 
@@ -35,7 +33,6 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-  
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
