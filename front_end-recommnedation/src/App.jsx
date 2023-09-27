@@ -32,29 +32,37 @@ function App() {
         console.log(error);
       });
   };
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchTerm(query);
+
+    // Filter movies that contain the search term
+    const results = movies.filter((movie) =>
+      movie.toLowerCase().includes(query)
+    );
+    setSearchResults(results);
+  };
 
   return (
     <>
     <div>
-      <h1>Movie Titles</h1>
-      <ul>
-        {movies.map((title, index) => (
-          <li key={index}>{title}</li>
-        ))}
-      </ul>
-    
-    <form onSubmit={handleSubmit}>
+      <h1>Movie Search</h1>
       <input
         type="text"
-        name="fieldName1"
-        value={formData}
-        onChange={(e)=>setFormData(e.target.value)}
+        placeholder="Search for a movie"
+        value={searchTerm}
+        onChange={handleSearch}
       />
-      
-      {/* Add more form fields here */}
-      <button type="submit">Submit</button>
-    </form>
+
+      <ul>
+        {searchResults.map((title, index) => (
+          <p key={index}>{title}</p>
+        ))}
+      </ul>
     </div>
     </>
   );
