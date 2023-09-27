@@ -12,15 +12,11 @@ def ml(request):
 
 def load_movies(request):
     try:
-        with open('movies.pkl', 'rb') as file:
-            movies_list = pickle.load(file)
-            movies = pd.DataFrame(movies_list)
-            print(movies)
-            movie_titles = [movie['title'] for movie in movies]
-            print(movie_titles)
-            return JsonResponse(movie_titles, safe=False)
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
-
-
+        movies_df = pd.read_pickle("movies.pkl")
+        # Assuming you want to return the DataFrame data as JSON
+        movies_data = movies_df.to_dict(orient="records")
+        return JsonResponse(movies_data, safe=False)
+    except FileNotFoundError:
+        # Handle the case where the "movies.pkl" file is not found
+        return JsonResponse({"error": "File not found"}, status=404)
 

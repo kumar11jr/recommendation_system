@@ -6,7 +6,9 @@ function App() {
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/movies/')
       .then(response => {
-        setMovies(response.data);
+        const movieData = response.data
+        const movieTitles = movieData.map(movie => movie.title);
+        setMovies(movieTitles);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -41,7 +43,7 @@ function App() {
           <li key={index}>{title}</li>
         ))}
       </ul>
-    </div>
+    
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -53,10 +55,9 @@ function App() {
       {/* Add more form fields here */}
       <button type="submit">Submit</button>
     </form>
+    </div>
     </>
   );
 }
 
 export default App;
-
-9
