@@ -1,28 +1,29 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 function App() {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/movies/')
-      .then(response => {
-        const movieData = response.data
-        const movieTitles = movieData.map(movie => movie.title);
+    axios
+      .get("http://127.0.0.1:8000/movies/")
+      .then((response) => {
+        const movieData = response.data;
+        const movieTitles = movieData.map((movie) => movie.title);
         setMovies(movieTitles);
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   }, []);
 
-  
   const [formData, setFormData] = useState("");
-  const formD = new FormData()
-  formD.append('data',formData)
+  const formD = new FormData();
+  formD.append("data", formData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    axios.post('http://127.0.0.1:8000/', formD)
+
+    axios
+      .post("http://127.0.0.1:8000/", formD)
       .then((resp) => {
         console.log(resp);
       })
@@ -31,7 +32,7 @@ function App() {
       });
   };
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
@@ -46,21 +47,28 @@ function App() {
 
   return (
     <>
-    <div>
-      <h1>Movie Search</h1>
-      <input
-        type="text"
-        placeholder="Search for a movie"
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-
-      <ul>
-        {searchResults.map((title, index) => (
-          <p key={index}>{title}</p>
-        ))}
-      </ul>
-    </div>
+      <div>
+        <h1>Movie Search</h1>
+        <div class="search-container">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearch}
+            class="search-input"
+            placeholder="Search for a movie"
+          />
+          <button class="search-button">Search</button>
+        </div>
+        <ul>
+          {searchResults.length > 0 ? (
+            searchResults
+              .slice(0, 10)
+              .map((title, index) => <p key={index}>{title}</p>)
+          ) : (
+            <p></p>
+          )}
+        </ul>
+      </div>
     </>
   );
 }
