@@ -21,7 +21,6 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
       .post("http://127.0.0.1:8000/", formD)
       .then((resp) => {
@@ -48,7 +47,7 @@ function App() {
   return (
     <>
       <div>
-        <h1>Movie Search</h1>
+        <h1 className="">Movie Search</h1>
         <div class="search-container">
           <input
             type="text"
