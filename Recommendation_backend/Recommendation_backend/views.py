@@ -20,8 +20,6 @@ def recommend(movie):
 def ml(request):
     data = request.POST.get('data')
     recommendation = recommend(data)
-    # print(recommendation)
-    # print("hello")
     return JsonResponse(recommendation,safe=False)
 
 
@@ -33,7 +31,6 @@ similarity = pickle.load(open('similarity.pkl',"rb"))
 
 def load_movies(request):
     try:
-        # print(movies_df)
         return JsonResponse(movies_data, safe=False)
     except FileNotFoundError:
         return JsonResponse({"error": "File not found"}, status=404)
