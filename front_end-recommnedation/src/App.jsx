@@ -67,8 +67,7 @@ function App() {
             />
             <button type="submit" className="search-button">
               Search
-            </button>{" "}
-            {/* Use className */}
+            </button>
           </div>
         </form>
         <ul>

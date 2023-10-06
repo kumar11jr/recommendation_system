@@ -7,7 +7,7 @@ import pandas as pd
 def recommend(movie):
     movie_index = movies_df[movies_df["title"] == movie].index[0]
     distances = similarity[movie_index]
-    movies_list = sorted(list(enumerate(distances)),reverse=True,key=lambda x:x[1])[1:10]
+    movies_list = sorted(list(enumerate(distances)),reverse=True,key=lambda x:x[1])[1:5]
 
     recommended_movies = []
     for i in movies_list:
