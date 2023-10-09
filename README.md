@@ -9,7 +9,7 @@ Currently, two official plugins are available:
 
 ## Screenshots
 ![image](https://github.com/kumar11jr/recommendation_system/assets/104729493/9104893f-2fee-467c-9c1e-a6a666351bbd)
-
+![image](https://github.com/kumar11jr/recommendation_system/assets/104729493/3eaf3910-64f3-4c37-baee-9f812ba072d2)
 ## Technologies
 * React
 * Nextjs
