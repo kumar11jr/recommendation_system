@@ -6,13 +6,15 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [recommend, setRecommend] = useState([]);
+  const [images,setimages] = useState([]);
 
+  // get movies data loaded from backend
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/movies/")
       .then((response) => {
         const movieData = response.data;
-        console.log(movieData);
+        // console.log(movieData);
         const movieTitles = movieData.map((movie) => movie.title);
         setMovies(movieTitles);
       })
@@ -24,18 +26,26 @@ function App() {
   const formD = new FormData();
   formD.append("data", searchResults);
 
+
+  // getting recommendation by clicking search button
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post("http://127.0.0.1:8000/", formD)
       .then((resp) => {
-        setRecommend(resp.data); // Store the recommended movies in state
+        // console.log()
+        setRecommend(resp.data[0]); // Store the recommended movies in state
+        // recommendImages = 
+        // console.log(recommendImages[0])
+        // console.log(recommendImages)
+        // console.log(img1)
+        setimages(resp.data[1])
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
+// console.log(recommendImages[0])
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
@@ -77,12 +87,29 @@ function App() {
                 .map((title, index) => <p key={index}>{title}</p>)
             : null}
 
-          {searchResults.length !== 0 && recommend.length > 0 ? (
+          {/* Display recommended movies with images */}
+          {recommend.length > 0 ? (
             <div>
               <h2>Recommended Movies</h2>
               <ul>
                 {recommend.map((movie, index) => (
-                  <li key={index}>{movie}</li>
+                  <li key={index}>
+                    {/* Display recommended movie title */}
+                    {movie}
+                    {/* Display corresponding image */}
+                  </li>
+                ))}
+              </ul>
+              <ul>
+                {images.map((path, index) => (
+                  
+                    <img
+                      src={path} // Use index to get the correct image URL
+                      // alt={movie}
+                      width="400"
+                      height="450" // You can adjust the width and height as needed
+                    />
+                  
                 ))}
               </ul>
             </div>
