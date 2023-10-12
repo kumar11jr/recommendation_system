@@ -13,7 +13,7 @@ Currently, two official plugins are available:
 ## Technologies
 * React
 * Nextjs
-* Machine Learning
+* Machine Learning for models
 * django
 * Rest API
 
