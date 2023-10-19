@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+
+/* CSS for recommended movie images */
+.recommended-movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.movie-item {
+  margin: 10px;
+  text-align: center;
+}
+
+.movie-image {
+  width: 200px; /* Adjust the image width as needed */
+  height: 300px; /* Adjust the image height as needed */
+  object-fit: cover;
+  border: 2px solid #333; /* Add a border around the images */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+/* Media query to adjust image size on smaller screens */
+@media (max-width: 768px) {
+  .movie-image {
+    width: 150px;
+    height: 225px;
+  }
+}

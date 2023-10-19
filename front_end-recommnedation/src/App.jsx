@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./App.css"
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -100,18 +101,18 @@ function App() {
                   </li>
                 ))}
               </ul>
-              <ul>
-                {images.map((path, index) => (
-                  
-                    <img
-                      src={path} // Use index to get the correct image URL
-                      // alt={movie}
-                      width="400"
-                      height="450" // You can adjust the width and height as needed
-                    />
-                  
-                ))}
-              </ul>
+              <ul className="recommended-movies">
+  {images.map((path, index) => (
+    <li key={index} className="movie-item">
+      <img
+        src={path}
+        alt={`Recommended Movie ${index + 1}`}
+        className="movie-image"
+      />
+    </li>
+  ))}
+</ul>
+
             </div>
           ) : null}
         </ul>
