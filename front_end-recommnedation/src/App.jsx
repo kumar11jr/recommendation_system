@@ -1,13 +1,14 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css"
+import "./App.css";
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [recommend, setRecommend] = useState([]);
-  const [images,setimages] = useState([]);
+  const [images, setimages] = useState([]);
 
   // get movies data loaded from backend
   useEffect(() => {
@@ -27,7 +28,6 @@ function App() {
   const formD = new FormData();
   formD.append("data", searchResults);
 
-
   // getting recommendation by clicking search button
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,17 +36,17 @@ function App() {
       .then((resp) => {
         // console.log()
         setRecommend(resp.data[0]); // Store the recommended movies in state
-        // recommendImages = 
+        // recommendImages =
         // console.log(recommendImages[0])
         // console.log(recommendImages)
         // console.log(img1)
-        setimages(resp.data[1])
+        setimages(resp.data[1]);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-// console.log(recommendImages[0])
+  // console.log(recommendImages[0])
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchTerm(query);
@@ -88,31 +88,25 @@ function App() {
                 .map((title, index) => <p key={index}>{title}</p>)
             : null}
 
-          {/* Display recommended movies with images */}
           {recommend.length > 0 ? (
             <div>
               <h2>Recommended Movies</h2>
               <ul>
                 {recommend.map((movie, index) => (
-                  <li key={index}>
-                    {/* Display recommended movie title */}
-                    {movie}
-                    {/* Display corresponding image */}
-                  </li>
+                  <li key={index}>{movie}</li>
                 ))}
               </ul>
               <ul className="recommended-movies">
-  {images.map((path, index) => (
-    <li key={index} className="movie-item">
-      <img
-        src={path}
-        alt={`Recommended Movie ${index + 1}`}
-        className="movie-image"
-      />
-    </li>
-  ))}
-</ul>
-
+                {images.map((path, index) => (
+                  <li key={index} className="movie-item">
+                    <img
+                      src={path}
+                      alt={`Recommended Movie ${index + 1}`}
+                      className="movie-image"
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : null}
         </ul>
