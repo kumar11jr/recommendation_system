@@ -32,7 +32,7 @@ This is a movie recommendation system that combines React, Django, Machine Learn
 - Users can sign up, log in, and set their movie preferences.
 - The system provides movie recommendations based on user preferences.
 - Users can rate movies, and the system refines recommendations over time.
-- User reviews are analyzed using NLP to further enhance recommendations.
+- User reviews are analysed using NLP to further enhance recommendations.
 
 ## Contributing
 
